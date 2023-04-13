@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -33,9 +34,8 @@ public class FilterImage {
                 int redPixelImage = color.getRed();
                 int greenPixelImage = color.getGreen();
                 int bluePixelImage = color.getBlue();
-
+             
                 Color neoColor = new Color(redPixelImage,0,0);
-
                 image.setRGB(iteratorLine, iteratorCol, neoColor.getRGB());
 
             }
@@ -44,6 +44,55 @@ public class FilterImage {
          return savedImage(pathImage);
     }
 
+    
+    public boolean filterBlue(String pathImage) {
+		
+    	int line = image.getWidth();
+        int collunm = image.getHeight();
+
+        for(int iteratorLine = 0; iteratorLine < line; iteratorLine++){
+            for(int iteratorCol = 0; iteratorCol < collunm; iteratorCol++){
+                int pixelImage = image.getRGB(iteratorLine, iteratorCol);
+                Color color = new Color(pixelImage);
+
+                int redPixelImage = color.getRed();
+                int greenPixelImage = color.getGreen();
+                int bluePixelImage = color.getBlue();
+
+                Color neoColor = new Color(0,0,bluePixelImage);
+
+                image.setRGB(iteratorLine, iteratorCol, neoColor.getRGB());
+
+            }
+        }
+
+         return savedImage(pathImage);
+	}
+    
+    public boolean filterGreen(String pathImage) {
+		
+    	int line = image.getWidth();
+        int collunm = image.getHeight();
+
+        for(int iteratorLine = 0; iteratorLine < line; iteratorLine++){
+            for(int iteratorCol = 0; iteratorCol < collunm; iteratorCol++){
+                int pixelImage = image.getRGB(iteratorLine, iteratorCol);
+                Color color = new Color(pixelImage);
+
+                int redPixelImage = color.getRed();
+                int greenPixelImage = color.getGreen();
+                int bluePixelImage = color.getBlue();
+
+                Color neoColor = new Color(0,greenPixelImage,0);
+
+                image.setRGB(iteratorLine, iteratorCol, neoColor.getRGB());
+
+            }
+        }
+
+         return savedImage(pathImage);
+	}
+    
 
     private boolean savedImage(String name) {
         try {
@@ -138,6 +187,116 @@ public class FilterImage {
         return savedImage(name);
 		
 	}
+
+	
+	public boolean filterLimiarImage(String name) {
+		int line = image.getWidth();
+        int collunm = image.getHeight();
+
+        int limiar = 128;
+        for(int iteratorLine = 0; iteratorLine < line; iteratorLine++){
+            for(int iteratorCol = 0; iteratorCol < collunm; iteratorCol++){
+                
+            	int pixelImage = image.getRGB(iteratorLine, iteratorCol);
+                int color = (pixelImage & 0xff);
+
+                if (color < limiar) {
+                	image.setRGB(iteratorLine, iteratorCol, Color.BLACK.getRGB());
+                }else {
+                	image.setRGB(iteratorLine, iteratorCol, Color.WHITE.getRGB());
+                }
+            }
+        }
+        
+        return savedImage(name);
+		
+	}
+
+
+	public boolean scaleRedGray(String pathImage) {
+		int line = image.getWidth();
+        int collunm = image.getHeight();
+
+        for(int iteratorLine = 0; iteratorLine < line; iteratorLine++){
+            for(int iteratorCol = 0; iteratorCol < collunm; iteratorCol++){
+      
+            	int pixelImage = image.getRGB(iteratorLine, iteratorCol);
+      
+                Color color = new Color(pixelImage);
+
+                int redPixelImage = color.getRed();
+                int greenPixelImage = color.getGreen();
+                int bluePixelImage = color.getBlue();
+                int redGray = (int) ( redPixelImage *0.588);
+                Color neoColor = new Color(redPixelImage,redPixelImage,redPixelImage);
+
+                image.setRGB(iteratorLine, iteratorCol, neoColor.getRGB());
+              
+            }
+        }
+        
+        return savedImage(pathImage);
+	}
+
+
+	public boolean scaleGreenGray(String pathImage) {
+		int line = image.getWidth();
+        int collunm = image.getHeight();
+
+        for(int iteratorLine = 0; iteratorLine < line; iteratorLine++){
+            for(int iteratorCol = 0; iteratorCol < collunm; iteratorCol++){
+      
+            	int pixelImage = image.getRGB(iteratorLine, iteratorCol);
+      
+                Color color = new Color(pixelImage);
+
+                int redPixelImage = color.getRed();
+                int greenPixelImage = color.getGreen();
+                int bluePixelImage = color.getBlue();
+                
+                int mediaColors = (redPixelImage + greenPixelImage + bluePixelImage)/3;
+                int greenGray = (int) (mediaColors * 0.299);
+                Color neoColor = new Color(greenPixelImage,greenPixelImage,greenPixelImage);
+
+                image.setRGB(iteratorLine, iteratorCol, neoColor.getRGB());
+              
+            }
+        }
+        
+        return savedImage(pathImage);
+	}
+	
+	public boolean scaleBlueGray(String pathImage) {
+		int line = image.getWidth();
+        int collunm = image.getHeight();
+
+        for(int iteratorLine = 0; iteratorLine < line; iteratorLine++){
+            for(int iteratorCol = 0; iteratorCol < collunm; iteratorCol++){
+      
+            	int pixelImage = image.getRGB(iteratorLine, iteratorCol);
+      
+                Color color = new Color(pixelImage);
+
+                int redPixelImage = color.getRed();
+                int greenPixelImage = color.getGreen();
+                int bluePixelImage = color.getBlue();
+                
+                int mediaColors = (redPixelImage + greenPixelImage + bluePixelImage)/3;
+                int bluenGray = (int) (mediaColors * 0.299);
+                Color neoColor = new Color(bluePixelImage,bluePixelImage,bluePixelImage);
+
+                image.setRGB(iteratorLine, iteratorCol, neoColor.getRGB());
+              
+            }
+        }
+        
+        return savedImage(pathImage);
+	}
+
+	
+	
+
+	
 
   
 
