@@ -4,8 +4,8 @@ public class Main  {
 
 	
 	public static void main(String[] args){
-		 FilterImage filter = new FilterImage("./src/img/image.jpeg");
-		 boolean result = filter.filterRedImage("./src/img/novaRedImage.jpeg");
+		// Utilize o FilterImageTest.java para rodar todas a funçẽos de
+		// FilterImage.java
 	}
 
 }

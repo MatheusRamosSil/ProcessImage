@@ -28,7 +28,8 @@ public class FilterImage {
 
         for(int iteratorLine = 0; iteratorLine < line; iteratorLine++){
             for(int iteratorCol = 0; iteratorCol < collunm; iteratorCol++){
-                int pixelImage = image.getRGB(iteratorLine, iteratorCol);
+                
+            	int pixelImage = image.getRGB(iteratorLine, iteratorCol);
                 Color color = new Color(pixelImage);
 
                 int redPixelImage = color.getRed();
@@ -227,7 +228,6 @@ public class FilterImage {
                 int redPixelImage = color.getRed();
                 int greenPixelImage = color.getGreen();
                 int bluePixelImage = color.getBlue();
-                int redGray = (int) ( redPixelImage *0.588);
                 Color neoColor = new Color(redPixelImage,redPixelImage,redPixelImage);
 
                 image.setRGB(iteratorLine, iteratorCol, neoColor.getRGB());
@@ -255,7 +255,6 @@ public class FilterImage {
                 int bluePixelImage = color.getBlue();
                 
                 int mediaColors = (redPixelImage + greenPixelImage + bluePixelImage)/3;
-                int greenGray = (int) (mediaColors * 0.299);
                 Color neoColor = new Color(greenPixelImage,greenPixelImage,greenPixelImage);
 
                 image.setRGB(iteratorLine, iteratorCol, neoColor.getRGB());
@@ -282,7 +281,6 @@ public class FilterImage {
                 int bluePixelImage = color.getBlue();
                 
                 int mediaColors = (redPixelImage + greenPixelImage + bluePixelImage)/3;
-                int bluenGray = (int) (mediaColors * 0.299);
                 Color neoColor = new Color(bluePixelImage,bluePixelImage,bluePixelImage);
 
                 image.setRGB(iteratorLine, iteratorCol, neoColor.getRGB());
